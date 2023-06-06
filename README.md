@@ -1,4 +1,4 @@
-# Github-Project-OOP
+# online_pvp_speedtyping_game
  
 This is our Github
 Members: 
