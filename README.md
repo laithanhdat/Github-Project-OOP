@@ -1,7 +1,15 @@
-# Github-Project-OOP
+# online_pvp_speedtyping_game
  
-This is our Github
-Members: 
-    Lại Thành Đạt (Team Lead) 
-    Vũ Minh Hiếu (Member)
-    Trần Hiếu Minh (Member)
+**Team Member:**
+
+  Lai Thanh Dat | fcx8nv@gmail.com
+  
+  Vu Minh Hieu
+  
+  Tran Hieu Minh | hieuminh30182004@gmail.com
+  
+  Nguyen Hoang Nam 
+
+**Course information:**  CSE3011 2 - Introduction to Oriented Object Programming
+
+**Lecturer:** Dr. Bui Huy Kien   
