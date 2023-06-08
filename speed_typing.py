@@ -5,7 +5,8 @@ import time
 import random
 
 # 750 x 500    
-    
+
+
 class Game:
    
     def __init__(self):
@@ -24,9 +25,11 @@ class Game:
             #WPM: word per minuted
         self.word_per_min = 0
         self.end = False
-        self.HEAD_C = (255,213,102)
-        self.TEXT_C = (240,240,240)
-        self.RESULT_C = (255,70,70)
+        #colors of header, text, result
+        self.header_color = (255,213,102)
+        self.text_color  = (240,240,240)
+        self.result_color = (255,70,70)
+            
         
        
         pygame.init()
@@ -35,24 +38,25 @@ class Game:
 
 
         self.bg = pygame.image.load('background.jpg')
-        self.bg = pygame.transform.scale(self.bg, (500,750))
+        self.bg = pygame.transform.scale(self.bg, (750,500)) #resize the background.jpg to width = 750, height = 500 
 
         self.screen = pygame.display.set_mode((self.__width,self.__height))
-        pygame.display.set_caption('Type Speed test')
-       
+        pygame.display.set_caption('Multiplayer Speedtyping Game')
         
     def draw_text(self, screen, msg, y ,fsize, color):
         font = pygame.font.Font(None, fsize)
         text = font.render(msg, 1,color)
         text_rect = text.get_rect(center=(self.__width/2, y))
         screen.blit(text, text_rect)
-        pygame.display.update()   
+        pygame.display.update()    #update the changes 
         
-    def import_sentence(self):
+
+    def take_sentence(self):
         f = open('sentences.txt').read() #read the document 
         sentences = f.split('\n')  #identify sentences
         sentence = random.choice(sentences) #choose sentences randomly 
         return sentence
+    
 
     def display_results (self, screen):
         if(not self.end):
@@ -78,7 +82,8 @@ class Game:
 
             # draw icon image
             self.time_img = pygame.image.load('icon.png')
-            self.time_img = pygame.transform.scale(self.time_img, (150,150))
+            self.time_img = pygame.transform.scale(self.time_img, (100,100))
+
             #screen.blit(self.time_img, (80,320))
             screen.blit(self.time_img, (self.__width/2-75,self.__height-140))
             self.draw_text(screen,"Reset", self.__height - 70, 26, (100,100,100))
@@ -94,7 +99,7 @@ class Game:
         while(self.running):
             clock = pygame.time.Clock()
             self.screen.fill((0,0,0), (50,250,650,50))
-            pygame.draw.rect(self.screen,self.HEAD_C, (50,250,650,50), 2)
+            pygame.draw.rect(self.screen,self.header_color, (50,250,650,50), 2)
 
             # update the text of user input
             self.draw_text(self.screen, self.input_text, 274, 26,(250,250,250))
@@ -124,7 +129,7 @@ class Game:
                             print(self.input_text)
                             self.display_results(self.screen)
                             print(self.results)
-                            self.draw_text(self.screen, self.results,350, 28, self.RESULT_C) 
+                            self.draw_text(self.screen, self.results,350, 28, self.result_color) 
                             self.end = True
                             
                         elif event.key == pygame.K_BACKSPACE:
@@ -156,19 +161,19 @@ class Game:
         self.word_per_min = 0
 
         # Get random sentence 
-        self.word = self.import_sentence()
+        self.word = self.take_sentence()
         if (not self.word): self.reset_game()
 
         #drawing heading
         self.screen.fill((0,0,0))
         self.screen.blit(self.bg,(0,0))
         msg = "Typing Speed Test"
-        self.draw_text(self.screen, msg,80, 80,self.HEAD_C)  
+        self.draw_text(self.screen, msg,80, 80,self.header_color)  
         # draw the rectangle for input box
         pygame.draw.rect(self.screen,(255,192,25), (50,250,650,50), 2)
 
         # draw the sentence string
-        self.draw_text(self.screen, self.word,200, 28,self.TEXT_C)
+        self.draw_text(self.screen, self.word,200, 28,self.text_color )
         
         pygame.display.update()
 
